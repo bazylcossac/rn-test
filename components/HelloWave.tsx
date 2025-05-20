@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -35,6 +36,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 28,
     lineHeight: 32,
-    marginTop: -6,
+    marginTop: -10,
   },
 });
