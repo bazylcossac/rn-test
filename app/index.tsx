@@ -1,21 +1,42 @@
 import React from "react"
-import {View, Text} from "react-native"
+import {Link} from "expo-router";
+import {View, Text, Pressable} from "react-native"
 import styled from "styled-components/native"
 
 
 const App = () => {
-    return <StyledView><StyledText>Witam</StyledText></StyledView>
+    return (
+        <StyledView>
+            <StyledText>
+                Witam
+            </StyledText>
+            <StyledText>
+                <Link href="/explore" asChild>
+                    <Button>
+                        <Text>Explore</Text>
+                    </Button>
+                </Link>
+            </StyledText>
+        </StyledView> )
 }
 
 
 
 const StyledView = styled.View`
     display:flex;
+    flex-direction: column;
     align-items: center;
+    gap:40;
     justify-content: center;
     width:100%;
     height: 100%;
     background-color: grey;
+`
+
+const Button = styled.Pressable`
+    padding:10px;
+    background-color: red;
+    border-radius: 10px;
 `
 
 const StyledText = styled.Text`
