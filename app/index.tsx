@@ -17,8 +17,11 @@ const App = () => {
                     </Button>
                 </Link>
             </StyledText>
+
         </StyledView> )
 }
+
+
 
 
 
