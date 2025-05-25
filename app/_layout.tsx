@@ -9,6 +9,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import "react-native-reanimated";
 
+
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 export default function RootLayout() {
@@ -18,13 +19,18 @@ export default function RootLayout() {
   });
 
   if (!loaded) {
-    // Async font loading only occurs in development.
+
     return null;
   }
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+
       <Stack>
+        <Stack.Screen
+          name="index"
+          options={{ title: "Index", headerShown: false }}
+        />
         <Stack.Screen
           name="explore"
           options={{ title: "Explore", headerShown: false }}
@@ -36,6 +42,7 @@ export default function RootLayout() {
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
+
     </ThemeProvider>
   );
 }

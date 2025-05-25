@@ -4,8 +4,10 @@ import {View, Text, Pressable} from "react-native"
 import styled from "styled-components/native"
 
 
+
 const App = () => {
     return (
+
         <StyledView>
             <StyledText>
                 Witam

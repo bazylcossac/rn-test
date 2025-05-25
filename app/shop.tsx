@@ -12,10 +12,10 @@ function Shop() {
       <StyledView>
         <StyledText>TO JEST SZOP</StyledText>
         <View style={styles.buttonView}>
-          <Link href="/explore" asChild>
-            <Pressable>
-              <Text style={styles.pressableText}>Go to Explore page</Text>
-            </Pressable>
+          <Link href="/explore">
+
+              Go to Explore page
+
           </Link>
           <Link href="/explore" asChild>
             <Pressable>
