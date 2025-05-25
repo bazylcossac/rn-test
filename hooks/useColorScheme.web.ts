@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useColorScheme as useRNColorScheme } from 'react-native';
+import { useEffect, useState } from "react";
+import { useColorScheme as useRNColorScheme } from "react-native";
 
 /**
  * To support static rendering, this value needs to be re-calculated on the client side for web
@@ -17,5 +17,21 @@ export function useColorScheme() {
     return colorScheme;
   }
 
-  return 'light';
+  return "light";
+}
+
+function useDebounce(input: string | number, ms: number = 100) {
+  const [value, setValue] = useState(input);
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setValue(input);
+    }, ms);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [ms, input]);
+
+  return value;
 }

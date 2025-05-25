@@ -1,13 +1,16 @@
 import React from "react"
-import { Platform, StyleSheet, Pressable, Text } from 'react-native';
+import { Platform, StyleSheet, Pressable, Text, Button } from 'react-native';
 import { Collapsible } from '@/components/Collapsible';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import {Link} from "expo-router";
+import {useNavigation} from '@react-navigation/native'
 
 export default function TabTwoScreen() {
+
+  const navigate = useNavigation()
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -23,13 +26,14 @@ export default function TabTwoScreen() {
         <ThemedText type="title">Explore</ThemedText>
       </ThemedView>
       <ThemedView>
-        <ThemedText>
-          <Link href="/shop" asChild>
-            <Pressable>
-              <Text>Go to shop</Text>
-            </Pressable>
-          </Link>
-        </ThemedText>
+        {/*<ThemedText>*/}
+        {/*  <Link href="/shop" asChild>*/}
+        {/*    <Pressable>*/}
+        {/*      <Text>Go to shop</Text>*/}
+        {/*    </Pressable>*/}
+        {/*  </Link>*/}
+        {/*</ThemedText>*/}
+        <Button title={"Go to shop"} onPress={() => navigate.navigate('shop')}/>
       </ThemedView>
       <ThemedText>This app includes example code to help you get started.</ThemedText>
       <Collapsible title="Animations">
@@ -63,4 +67,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
+
 });
