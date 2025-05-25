@@ -1,5 +1,5 @@
 import React from "react"
-import {Text, View} from "react-native"
+import {Text, View, StyleSheet} from "react-native"
 import {useRoute, RouteProp} from "@react-navigation/native"
 
 type CartItemsType = {
@@ -15,12 +15,24 @@ export function Cart() {
   const {id, item} = route.params
 
   return (
-    <View>
+    <View style={styles.view}>
       <Text>Item id: {id}</Text>
       <Text>Item name: {item}</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  view: {
+    backgroundColor: "white",
+    color: "black",
+    flex: 1
+    // width: "100%",
+    // height: "100%"
+  }
+})
+
+
 
 
 

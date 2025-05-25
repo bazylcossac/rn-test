@@ -6,10 +6,12 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import {useNavigation} from '@react-navigation/native'
+import {useRouter} from "expo-router";
 
 export default function TabTwoScreen() {
 
-  const navigate = useNavigation()
+  const navigation = useNavigation()
+  const router = useRouter()
 
   return (
     <ParallaxScrollView
@@ -26,14 +28,8 @@ export default function TabTwoScreen() {
         <ThemedText type="title">Explore</ThemedText>
       </ThemedView>
       <ThemedView>
-        {/*<ThemedText>*/}
-        {/*  <Link href="/shop" asChild>*/}
-        {/*    <Pressable>*/}
-        {/*      <Text>Go to shop</Text>*/}
-        {/*    </Pressable>*/}
-        {/*  </Link>*/}
-        {/*</ThemedText>*/}
-        <Button title={"Go to shop"} onPress={() => navigate.navigate('shop')}/>
+        <Button title={"Add item to cart"} onPress={() => router.navigate({pathname: "/cart", params: {id: 1, item: "basketball"}})} />
+        {/*<Button title={"Go to shop"} onPress={() => navigation.navigate('shop')}/>*/}
       </ThemedView>
       <ThemedText>This app includes example code to help you get started.</ThemedText>
       <Collapsible title="Animations">

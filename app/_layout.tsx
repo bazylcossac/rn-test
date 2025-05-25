@@ -35,9 +35,15 @@ export default function RootLayout() {
           name="explore"
           options={{ title: "Explore", headerShown: false }}
         />
+
         <Stack.Screen
           name="shop"
-          options={{ title: "Shop", headerShown: true }}
+          options={{ title: "Shop", headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="cart"
+          options={{ title: "cart", headerShown: true }}
         />
         <Stack.Screen name="+not-found" />
       </Stack>
