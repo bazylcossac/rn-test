@@ -1,12 +1,14 @@
 import React from "react"
 import { Platform, StyleSheet, Pressable, Text, Button } from 'react-native';
+
 import { Collapsible } from '@/components/Collapsible';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import {useNavigation} from '@react-navigation/native'
-import {useRouter} from "expo-router";
+import {useRouter, Link} from "expo-router";
+
 
 export default function TabTwoScreen() {
 
@@ -29,7 +31,11 @@ export default function TabTwoScreen() {
       </ThemedView>
       <ThemedView>
         <Button title={"Add item to cart"} onPress={() => router.navigate({pathname: "/cart", params: {id: 1, item: "basketball"}})} />
-        {/*<Button title={"Go to shop"} onPress={() => navigation.navigate('shop')}/>*/}
+        <Link href="/shop" asChild style={styles.buttonLink}>
+          <Pressable>
+            <Text style={styles.textStyle}>Go to shop</Text>
+          </Pressable>
+        </Link>
       </ThemedView>
       <ThemedText>This app includes example code to help you get started.</ThemedText>
       <Collapsible title="Animations">
@@ -46,6 +52,9 @@ export default function TabTwoScreen() {
               component provides a parallax effect for the header image.
             </ThemedText>
           ),
+          android: (
+            <ThemedText>to ANDROID</ThemedText>
+          )
         })}
       </Collapsible>
     </ParallaxScrollView>
@@ -63,5 +72,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
+  buttonLink: {
+    backgroundColor: "gray",
+    height: 35,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold"
+  }
 
 });
