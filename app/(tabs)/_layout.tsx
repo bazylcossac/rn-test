@@ -15,7 +15,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   if (!loaded) {
@@ -29,21 +29,11 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen
           name="index"
-          options={{ title: "Index", headerShown: false }}
+          options={{ title: "Home", headerShown: false }}
         />
         <Stack.Screen
           name="explore"
-          options={{ title: "Explore", headerShown: false }}
-        />
-
-        <Stack.Screen
-          name="shop"
-          options={{ title: "Shop", headerShown: false }}
-        />
-
-        <Stack.Screen
-          name="cart"
-          options={{ title: "cart", headerShown: true }}
+          options={{ title: "Explore", headerShown: true }}
         />
         <Stack.Screen name="+not-found" />
       </Stack>

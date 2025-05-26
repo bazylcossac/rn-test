@@ -13,7 +13,7 @@ const App = () => {
                 Witam
             </StyledText>
             <StyledText>
-                <Link href="/explore" asChild>
+                <Link href="/(tabs)/explore" asChild>
                     <Button>
                         <Text>Explore</Text>
                     </Button>

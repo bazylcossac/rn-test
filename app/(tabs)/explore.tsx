@@ -31,7 +31,7 @@ export default function TabTwoScreen() {
       </ThemedView>
       <ThemedView>
         <Button title={"Add item to cart"} onPress={() => router.navigate({pathname: "/cart", params: {id: 1, item: "basketball"}})} />
-        <Link href="/shop" asChild style={styles.buttonLink}>
+        <Link href="/(shop)/shop" asChild style={styles.buttonLink}>
           <Pressable>
             <Text style={styles.textStyle}>Go to shop</Text>
           </Pressable>
