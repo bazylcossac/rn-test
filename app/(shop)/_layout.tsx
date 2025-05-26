@@ -7,10 +7,18 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import {View, Text} from "react-native"
 import "react-native-reanimated";
 
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+
+function CustomHeader(){
+  return <View>
+    <Text>Custom header</Text>
+  </View>
+}
+
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -25,7 +33,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <
+      <CustomHeader />
       <Stack>
         <Stack.Screen
           name="shop"
