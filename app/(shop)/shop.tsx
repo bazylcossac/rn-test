@@ -1,5 +1,5 @@
-import React from "react";
-import { ImageBackground, Pressable, Text, StyleSheet, View } from "react-native";
+import React, {useState} from "react";
+import { ImageBackground, Pressable, Text, StyleSheet, View, Button } from "react-native";
 import {Link} from "expo-router"
 import styled from "styled-components/native";
 import {useQuery} from "@tanstack/react-query"
@@ -14,7 +14,7 @@ const fetchData = async(page: number) => {
       throw new Error("Failed to fetch")
     }
     const data = await response.json()
-    const posts = data.slice(0 + PAGE_LENGTH * BASE_PAGE, 0 + PAGE_LENGTH * BASE_PAGE + 5 )
+    const posts = data.slice(PAGE_LENGTH * BASE_PAGE, PAGE_LENGTH * BASE_PAGE + 5 )
     return posts
     // 0 5 => 5 10 => 10 15
   }
@@ -23,17 +23,15 @@ const fetchData = async(page: number) => {
   }
 }
 
-//@ts-ignore
-import legoZiomek from "@/assets/images/legoziomek.jpg";
-
 function Shop() {
 
-  console.log('HEELLO WORLD')
-
+  const [page, setPage] = useState<number>(BASE_PAGE)
   const {data, isLoading, isError} = useQuery({
     queryKey: [`posts-page:${BASE_PAGE}`],
     queryFn: async()  => await fetchData(BASE_PAGE)
   })
+
+
 
   return (
     // <ImageBackground source={legoZiomek} resizeMode="cover">
@@ -51,6 +49,11 @@ function Shop() {
               <Text style={styles.pressableText}>Go to Explore page</Text>
             </Pressable>
           </Link>
+        </View>
+        <View>
+          <Pressable>
+            <
+          </Pressable>
         </View>
       </StyledView>
     // </ImageBackground>

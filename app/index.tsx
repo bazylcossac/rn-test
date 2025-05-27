@@ -1,3 +1,4 @@
+// adb shell am start -n host.exp.exponent/.experience.HomeActivity
 import React from "react"
 import {Link} from "expo-router";
 import {View, Text, Pressable} from "react-native"
