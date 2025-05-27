@@ -1,11 +1,9 @@
-import React, {useState} from "react";
-import { ImageBackground, Pressable, Text, StyleSheet, View, Button } from "react-native";
-import {Link} from "expo-router"
+import React, {useState, useCallback} from "react";
+import { ImageBackground, Pressable, Text, StyleSheet, View, Button, FlatList } from "react-native";
 import styled from "styled-components/native";
 import {useQuery} from "@tanstack/react-query"
-
 const PAGE_LENGTH = 5
-const BASE_PAGE = 0
+const PAGE = 0
 
 const fetchData = async(page: number) => {
   try{
@@ -14,7 +12,7 @@ const fetchData = async(page: number) => {
       throw new Error("Failed to fetch")
     }
     const data = await response.json()
-    const posts = data.slice(PAGE_LENGTH * BASE_PAGE, PAGE_LENGTH * BASE_PAGE + 5 )
+    const posts = data.slice(PAGE_LENGTH * page, PAGE_LENGTH * page + 5 )
     return posts
     // 0 5 => 5 10 => 10 15
   }
@@ -25,36 +23,31 @@ const fetchData = async(page: number) => {
 
 function Shop() {
 
-  const [page, setPage] = useState<number>(BASE_PAGE)
+  const [page, setPage] = useState<number>(PAGE)
   const {data, isLoading, isError} = useQuery({
-    queryKey: [`posts-page:${BASE_PAGE}`],
-    queryFn: async()  => await fetchData(BASE_PAGE)
+    queryKey: [`posts-page:${page}`],
+    queryFn: async()  => await fetchData(page)
   })
+
+  console.log(data)
+
+ if(isLoading) return <Text>Loading...</Text>
+  const handleNextPage = () => setPage( prev => prev + 1)
+  const handlePrevPage = () => setPage( prev => prev - 1)
 
 
 
   return (
-    // <ImageBackground source={legoZiomek} resizeMode="cover">
+
       <StyledView>
+        <DataContainer>
+          {data && <FlatList data={data} renderItem={({item}) => <Text style={{marginVertical: 20}}>{item.body}</Text>} keyExtractor={data => data.id}/>}
 
-        <StyledText>TO JEST SZOP</StyledText>
-        <View style={styles.buttonView}>
-          <Link href="/explore">
-
-              Go to Explore page
-
-          </Link>
-          <Link href="/explore" asChild>
-            <Pressable>
-              <Text style={styles.pressableText}>Go to Explore page</Text>
-            </Pressable>
-          </Link>
-        </View>
-        <View>
-          <Pressable>
-            <
-          </Pressable>
-        </View>
+        </DataContainer>
+        <ButtonComponent>
+         <Button title={"Next page"} onPress={handleNextPage} />
+         <Button title={"PREV page"} onPress={handlePrevPage} />
+        </ButtonComponent>
       </StyledView>
     // </ImageBackground>
   );
@@ -82,6 +75,21 @@ const StyledView = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+const DataContainer = styled.View`
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: 20
+`
+const ButtonComponent = styled.View`
+  display: flex;
+    position: absolute;
+    bottom: 0;
+  flex-direction: row;
+  margin-top: auto;
+  margin-bottom: 20  
+`
 
 const StyledText = styled.Text`
   color: white;
