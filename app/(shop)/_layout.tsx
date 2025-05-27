@@ -42,7 +42,7 @@ export default function RootLayout() {
 
         <Stack.Screen
           name="cart"
-          options={{ title: "cart", headerShown: true }}
+          options={{ title: "cart", headerShown: false }}
         />
         <Stack.Screen name="+not-found" />
       </Stack>

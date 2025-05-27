@@ -2,14 +2,43 @@ import React from "react";
 import { ImageBackground, Pressable, Text, StyleSheet, View } from "react-native";
 import {Link} from "expo-router"
 import styled from "styled-components/native";
+import {useQuery} from "@tanstack/react-query"
+
+const PAGE_LENGTH = 5
+const BASE_PAGE = 0
+
+const fetchData = async(page: number) => {
+  try{
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+    if(!response.ok){
+      throw new Error("Failed to fetch")
+    }
+    const data = await response.json()
+    const posts = data.slice(0 + PAGE_LENGTH * BASE_PAGE, 0 + PAGE_LENGTH * BASE_PAGE + 5 )
+    return posts
+    // 0 5 => 5 10 => 10 15
+  }
+  catch{
+    throw new Error("Error occured")
+  }
+}
 
 //@ts-ignore
 import legoZiomek from "@/assets/images/legoziomek.jpg";
 
 function Shop() {
+
+  console.log('HEELLO WORLD')
+
+  const {data, isLoading, isError} = useQuery({
+    queryKey: [`posts-page:${BASE_PAGE}`],
+    queryFn: async()  => await fetchData(BASE_PAGE)
+  })
+
   return (
-    <ImageBackground source={legoZiomek} resizeMode="cover">
+    // <ImageBackground source={legoZiomek} resizeMode="cover">
       <StyledView>
+
         <StyledText>TO JEST SZOP</StyledText>
         <View style={styles.buttonView}>
           <Link href="/explore">
@@ -24,7 +53,7 @@ function Shop() {
           </Link>
         </View>
       </StyledView>
-    </ImageBackground>
+    // </ImageBackground>
   );
 }
 
