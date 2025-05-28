@@ -14,7 +14,7 @@ const fetchData = async(page: number) => {
     const data = await response.json()
     const posts = data.slice(PAGE_LENGTH * page, PAGE_LENGTH * page + 5 )
     return posts
-    // 0 5 => 5 10 => 10 15
+
   }
   catch{
     throw new Error("Error occured")
@@ -29,7 +29,7 @@ function Shop() {
     queryFn: async()  => await fetchData(page)
   })
 
-  console.log(data)
+
 
  if(isLoading) return <Text>Loading...</Text>
   const handleNextPage = () => setPage( prev => prev + 1)
@@ -42,7 +42,6 @@ function Shop() {
       <StyledView>
         <DataContainer>
           {data && <FlatList data={data} renderItem={({item}) => <Text style={{marginVertical: 20}}>{item.body}</Text>} keyExtractor={data => data.id}/>}
-
         </DataContainer>
         <ButtonComponent>
          <Button title={"Next page"} onPress={handleNextPage} />

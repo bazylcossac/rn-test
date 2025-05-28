@@ -11,7 +11,6 @@ import {View, Text} from "react-native"
 import "react-native-reanimated";
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
 
-
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 function CustomHeader(){
