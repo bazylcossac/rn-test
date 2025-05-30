@@ -1,14 +1,14 @@
 import {create} from "zustand";
 
 interface UserStore {
-  name: string;
-  setName: (username: string) => void
+  username: string;
+  setUsername: (username: string) => void
 }
 
 
 const useUserStore = create<UserStore>((set) => ({
-  name:"",
-  setName: (username) => set(() => ({name: username}))
+  username:"",
+  setUsername: (name) => set(() => ({username: name}))
 }))
 
 export default useUserStore
