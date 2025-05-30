@@ -1,11 +1,7 @@
 import { Stack } from 'expo-router';
 import React from 'react';
 import { Platform, Appearance } from 'react-native';
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
   const colorScheme = Appearance.getColorScheme();
@@ -24,12 +20,15 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
+          headerShown: false,
         }}
       />
       <Stack.Screen
         name="explore"
         options={{
+          headerShown: true,
           title: 'Explore',
+          headerTitle: "EEEE"
         }}
       />
         <Stack.Screen
@@ -38,6 +37,7 @@ export default function TabLayout() {
                 title: 'Shop',
             }}
         />
+      <Stack.Screen name="+not-found" options={{headerShown: false}}/>
     </Stack>
   );
 }

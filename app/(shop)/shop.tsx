@@ -100,3 +100,5 @@ const StyledText = styled.Text`
 `;
 
 export default Shop;
+
+
